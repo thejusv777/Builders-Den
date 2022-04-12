@@ -1,6 +1,7 @@
 package com.ty.BuildersDen.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,6 +33,6 @@ public class Orders {
 	@JoinColumn
 	private Customer customer;
 	@OneToMany(mappedBy = "orders")
-	private Item item;
+	private List<Item> item;
 	
 }

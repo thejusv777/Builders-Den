@@ -33,7 +33,7 @@ public class AdminService {
 		return adminDao.updateAdmin(id, admin);
 	}
 
-	Admin getAdminObject() {
+	public Admin getAdminObject() {
 		return adminDao.getAdminObject();
 	}
 }
