@@ -37,4 +37,8 @@ public class OrderService {
 	public Orders getOrderObject() {
 		return orderDao.getOrderObject();
 	}
+	
+	public List<Orders> getOrdersByCustomerId(int id){
+		return orderDao.getOrdersByCustomerId(id);
+	}
 }

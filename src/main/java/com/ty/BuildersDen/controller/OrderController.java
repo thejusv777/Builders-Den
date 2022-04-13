@@ -51,4 +51,9 @@ public class OrderController {
 	public Orders getOrders() {
 		return orderService.getOrderObject();
 	}
+	@GetMapping("/orderlist")
+	public List<Orders> getOrdersByCustomerId(@RequestParam int id){
+	   return	orderService.getOrdersByCustomerId(id);
+	}
+	
 }

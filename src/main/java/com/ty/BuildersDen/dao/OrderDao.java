@@ -64,5 +64,10 @@ public class OrderDao {
 	public Orders getOrderObject() {
 		return new Orders();
 	}
+	
+	public List<Orders > getOrdersByCustomerId(int id){
+		return ordersRepository.getListOfOrdersByCustomerId(id);
+		
+	}
 
 }
