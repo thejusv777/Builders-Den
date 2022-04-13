@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ty.BuildersDen.dao.ItemDao;
 import com.ty.BuildersDen.dto.Item;
+import com.ty.BuildersDen.exception.IdNotFoundException;
 
 @Service
 public class ItemService {
@@ -17,8 +18,13 @@ public class ItemService {
 		return itemDao.saveItem(orderId, item);
 	}
 
-	public Item getItemById(int itemid) {
-		return itemDao.getItemById(itemid);
+	public Item getItemById(int id) {
+		Item item= itemDao.getItemById(id);
+		
+		if(item== null) {
+			throw new IdNotFoundException("Given "+id+" Not Exit ");
+		}
+		return item;
 
 	}
 

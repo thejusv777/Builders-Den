@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ty.BuildersDen.dao.AdminDao;
 import com.ty.BuildersDen.dto.Admin;
+import com.ty.BuildersDen.exception.IdNotFoundException;
 
 @Service
 public class AdminService {
@@ -18,7 +19,12 @@ public class AdminService {
 	}
 
 	public Admin getAdminById(int id) {
-		return adminDao.getAdminById(id);
+		Admin admin= adminDao.getAdminById(id);
+		
+		if(admin== null) {
+			throw new IdNotFoundException("given "+id+" does not exist");
+		}
+		return admin;
 	}
 
 	public List<Admin> getAllAdmin() {

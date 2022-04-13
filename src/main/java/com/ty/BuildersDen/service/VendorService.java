@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ty.BuildersDen.dao.VendorDao;
 import com.ty.BuildersDen.dto.Vendor;
+import com.ty.BuildersDen.exception.IdNotFoundException;
 
 @Service
 public class VendorService {
@@ -17,8 +18,13 @@ public class VendorService {
 		return vendorDao.saveVendor(adminid, vendor);
 	}
 
-	public Vendor getVenderById(int vid) {
-		return vendorDao.getVenderById(vid);
+	public Vendor getVenderById(int id) {
+		Vendor vendor= vendorDao.getVenderById(id);
+		
+		if(vendor== null) {
+			throw new IdNotFoundException("Given "+id+" Not Exit ");
+		}
+		return vendor;
 	}
 
 	public List<Vendor> getAllVendor() {

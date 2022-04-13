@@ -2,11 +2,14 @@ package com.ty.BuildersDen.service;
 
 import java.util.List;
 
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ty.BuildersDen.dao.OrderDao;
 import com.ty.BuildersDen.dto.Orders;
+import com.ty.BuildersDen.exception.FormateMissMatchException;
+import com.ty.BuildersDen.exception.IdNotFoundException;
 
 @Service
 public class OrderService {
@@ -14,11 +17,20 @@ public class OrderService {
 	OrderDao orderDao;
 
 	public Orders saveOrder(int cid, Orders order) {
-		return orderDao.saveOrder(cid, order);
+		Orders saveOrder= orderDao.saveOrder(cid, order);
+		
+		if(saveOrder == null) {
+			throw new FormateMissMatchException();
+		}
+		return saveOrder;
 	}
 
-	public Orders getOrdersById(int cid) {
-		return orderDao.getOrdersById(cid);
+	public Orders getOrdersById(int id) {
+		Orders orders= orderDao.getOrdersById(id);
+		if(orders== null) {
+			throw new IdNotFoundException("Given "+id+" Not Exit ");
+		}
+		return orders;
 	}
 
 	public List<Orders> getAllOrders() {
@@ -39,6 +51,7 @@ public class OrderService {
 	}
 	
 	public List<Orders> getOrdersByCustomerId(int id){
+		
 		return orderDao.getOrdersByCustomerId(id);
 	}
 }

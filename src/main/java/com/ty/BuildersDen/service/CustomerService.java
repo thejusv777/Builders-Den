@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ty.BuildersDen.dao.CustomerDao;
 import com.ty.BuildersDen.dto.Customer;
+import com.ty.BuildersDen.exception.IdNotFoundException;
 
 @Service
 public class CustomerService {
@@ -17,8 +18,13 @@ public class CustomerService {
 		return customerDao.saveCustomer(customer);
 	}
 	
-	public Customer getCustomerById(int cid) {
-		return customerDao.getCustomerById(cid);
+	public Customer getCustomerById(int id) {
+		Customer customer= customerDao.getCustomerById(id);
+		
+		if(customer== null) {
+			throw new IdNotFoundException("Given "+id+" Not Exit ");
+		}
+		return customer;
 	}
 	
 	public List<Customer> getAllCustomer(){
