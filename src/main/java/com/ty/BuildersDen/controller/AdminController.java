@@ -29,7 +29,6 @@ public class AdminController {
 	public Admin getAdminById(@RequestParam int id) {
 		return adminService.getAdminById(id);
 	}
-	
 	@GetMapping("/alladmin")
 	public List<Admin> getAllAdmins(){
 		return adminService.getAllAdmin();
