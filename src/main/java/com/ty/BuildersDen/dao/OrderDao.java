@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ty.BuildersDen.dto.Customer;
 import com.ty.BuildersDen.dto.Orders;
+import com.ty.BuildersDen.dto.Vendor;
 import com.ty.BuildersDen.repository.OrdersRepository;
 
 @Repository
@@ -19,9 +20,13 @@ public class OrderDao {
 	@Autowired
 	private CustomerDao customerDao;
 	
-	public Orders saveOrder(int cid,Orders order) {
+	@Autowired 
+	private VendorDao vendorDao;
+	
+	public Orders saveOrder(int cid,int vendor_id,Orders order) {
 		Customer customer=customerDao.getCustomerById(cid);
-		if(customer!=null) {
+		Vendor vendor = vendorDao.getVenderById(vendor_id);
+		if(customer!=null && vendor != null) {
 			 ordersRepository.save(order);
 			 return order;
 		}
