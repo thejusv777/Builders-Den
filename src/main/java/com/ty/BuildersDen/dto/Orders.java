@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Entity
@@ -29,10 +31,17 @@ public class Orders {
 	private LocalDateTime dateOfDelivery;
 	private String message;
 	private double totalCost;
+
 	@ManyToOne
 	@JoinColumn
 	private Customer customer;
-	@OneToMany(mappedBy = "orders")
+
+	@OneToMany
 	private List<Item> item;
-	
+
+	@JsonIgnore
+	public Customer getCustomer() {
+		return customer;
+	}
+
 }

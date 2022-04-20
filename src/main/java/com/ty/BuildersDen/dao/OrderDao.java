@@ -1,6 +1,6 @@
 package com.ty.BuildersDen.dao;
 
-import java.util.List;
+import java.util.List; 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.ty.BuildersDen.dto.Customer;
 import com.ty.BuildersDen.dto.Orders;
-import com.ty.BuildersDen.dto.Vendor;
 import com.ty.BuildersDen.repository.OrdersRepository;
 
 @Repository
@@ -20,13 +19,10 @@ public class OrderDao {
 	@Autowired
 	private CustomerDao customerDao;
 	
-	@Autowired 
-	private VendorDao vendorDao;
 	
-	public Orders saveOrder(int cid,int vendor_id,Orders order) {
+	public Orders saveOrder(int cid,Orders order) {
 		Customer customer=customerDao.getCustomerById(cid);
-		Vendor vendor = vendorDao.getVenderById(vendor_id);
-		if(customer!=null && vendor != null) {
+		if(customer!=null) {
 			 ordersRepository.save(order);
 			 return order;
 		}

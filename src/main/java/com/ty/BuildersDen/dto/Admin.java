@@ -2,6 +2,7 @@ package com.ty.BuildersDen.dto;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +22,7 @@ public class Admin {
 	private String email;
 	private String password;
 	
-	@OneToMany(mappedBy = "admin")
+	@OneToMany(mappedBy = "admin",cascade = CascadeType.ALL)
 	private List<Vendor> vendor;
 
 }

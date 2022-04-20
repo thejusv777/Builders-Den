@@ -31,6 +31,12 @@ public class VendorController {
 		return vendorService.getVenderById(vendor_id);
 	}
 	
+	@PutMapping("vendorrating")
+	public Vendor setVendorRating(@RequestParam int vendor_id,@RequestParam int rating) {
+		return vendorService.setRating(vendor_id, rating);
+	}
+	
+	
 	@GetMapping("/allvendor")
 	public List<Vendor> getAllVendors(){
 		return vendorService.getAllVendor();

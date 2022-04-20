@@ -20,6 +20,7 @@ public class Customer {
 	private long phone;
 	private String email;
 	private String password;
+	
 	@OneToMany(mappedBy = "customer")
 	private List<Orders> orders;
 

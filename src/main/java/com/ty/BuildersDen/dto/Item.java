@@ -1,11 +1,13 @@
 package com.ty.BuildersDen.dto;
 
-import javax.persistence.Entity;
+import javax.persistence.Entity; 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -19,10 +21,13 @@ public class Item {
 	private String type;
 	private int quantity;
 	private double cost;
+
 	@ManyToOne
 	@JoinColumn
 	private Vendor vendor;
-	@ManyToOne
-	@JoinColumn
-	private Orders orders;
+	
+	@JsonIgnore
+	public Vendor getVendor() {
+		return vendor;
+	}
 }

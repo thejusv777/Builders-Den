@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ty.BuildersDen.dto.Admin;
+import com.ty.BuildersDen.dto.Vendor;
 import com.ty.BuildersDen.repository.AdminRepository;
 
 @Repository
@@ -16,6 +17,10 @@ public class AdminDao {
 	private AdminRepository adminRepository;
 	
 	public Admin saveAdmin(Admin admin) {
+		List<Vendor> vendors = admin.getVendor();
+		for(Vendor vendor : vendors) {
+			vendor.setAdmin(admin);
+		}
 		return adminRepository.save(admin);
 	}
 	

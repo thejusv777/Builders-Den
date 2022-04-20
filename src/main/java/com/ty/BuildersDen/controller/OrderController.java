@@ -22,9 +22,9 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 	
-	@PostMapping("/customer/{customer_id}/vendor/{vendor_id}/order")
-	public Orders saveOrder(@RequestBody Orders orders,@PathVariable int vendor_id, @PathVariable int customer_id) {
-		return orderService.saveOrder(customer_id, vendor_id, orders);
+	@PostMapping("/customer/{customer_id}/order")
+	public Orders saveOrder(@RequestBody Orders orders,@PathVariable int customer_id) {
+		return orderService.saveOrder(customer_id, orders);
 	}
 	
 	@GetMapping("/order")

@@ -1,11 +1,10 @@
 package com.ty.BuildersDen.controller;
 
-import java.util.List;
+import java.util.List; 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,9 +20,9 @@ public class ItemController {
 	@Autowired
 	private ItemService itemService;
 	
-	@PostMapping("/order/{order_id}/item")
-	public Item saveItem(@RequestBody Item item, @PathVariable int order_id) {
-		return itemService.saveItem(order_id, item);
+	@PostMapping("/vendor/{vendor_id}/item")
+	public Item saveItem(@RequestParam int vendor_id,@RequestBody Item item) {
+		return itemService.saveItem(vendor_id, item);
 	}
 	
 	@GetMapping("/item")

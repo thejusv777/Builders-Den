@@ -1,6 +1,6 @@
 package com.ty.BuildersDen.service;
 
-import java.util.List;
+import java.util.List; 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,11 +18,20 @@ public class VendorService {
 		return vendorDao.saveVendor(adminid, vendor);
 	}
 
+	public Vendor setRating(int vendor_id, int rating) {
+		Vendor vendor = getVenderById(vendor_id);
+		if (vendor != null) {
+			vendor.setRating(rating);
+			vendorDao.updateVendor(vendor_id, vendor);
+			return vendor;
+		}
+		return null;
+	}
+
 	public Vendor getVenderById(int id) {
-		Vendor vendor= vendorDao.getVenderById(id);
-		
-		if(vendor== null) {
-			throw new IdNotFoundException("Given "+id+" Not Exit ");
+		Vendor vendor = vendorDao.getVenderById(id);
+		if (vendor == null) {
+			throw new IdNotFoundException("Given " + id + " Not Exit ");
 		}
 		return vendor;
 	}

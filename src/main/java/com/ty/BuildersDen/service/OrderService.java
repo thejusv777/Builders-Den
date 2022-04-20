@@ -1,14 +1,11 @@
 package com.ty.BuildersDen.service;
 
-import java.util.List;
+import java.util.List; 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ty.BuildersDen.dao.CustomerDao;
 import com.ty.BuildersDen.dao.OrderDao;
-import com.ty.BuildersDen.dao.VendorDao;
-import com.ty.BuildersDen.dto.Customer;
 import com.ty.BuildersDen.dto.Item;
 import com.ty.BuildersDen.dto.Orders;
 import com.ty.BuildersDen.exception.FormateMissMatchException;
@@ -19,7 +16,7 @@ public class OrderService {
 	@Autowired
 	private OrderDao orderDao;
 
-	public Orders saveOrder(int cid,int vendor_id, Orders order) {
+	public Orders saveOrder(int cid, Orders order) {
 		double totalcost = 0;
 		double deliverycharge = 200;
 	
@@ -32,7 +29,7 @@ public class OrderService {
 		order.setTotalCost(totalcost);
 		order.setItem(order.getItem());
 
-		Orders saveOrder = orderDao.saveOrder(cid, vendor_id, order);
+		Orders saveOrder = orderDao.saveOrder(cid, order);
 		if (saveOrder == null) {
 			throw new FormateMissMatchException();
 		}

@@ -12,10 +12,10 @@ import com.ty.BuildersDen.exception.IdNotFoundException;
 @Service
 public class ItemService {
 	@Autowired
-	ItemDao itemDao;
+	private ItemDao itemDao;
 
-	public Item saveItem(int orderId, Item item) {
-		return itemDao.saveItem(orderId, item);
+	public Item saveItem( int vendor_id,Item item) {
+		return itemDao.saveItem(vendor_id, item);
 	}
 
 	public Item getItemById(int id) {
